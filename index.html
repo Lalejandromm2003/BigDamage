@@ -263,6 +263,48 @@
             font-size: 1rem;
             font-family: var(--font-body);
         }
+        /* =========================================
+       📱 OPTIMIZACIÓN PARA CELULARES (MÓVILES)
+       ========================================= */
+    @media (max-width: 768px) {
+        /* 1. Ajustar el tamaño del texto general para que sea legible pero no gigante */
+        body {
+            font-size: 14px;
+        }
+
+        /* 2. Asegurar que NINGUNA imagen (logos o fotos) se salga de la pantalla */
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* 3. Ajustar los títulos principales para que no se corten a los lados */
+        h1, h2, h3 {
+            font-size: 1.8rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* 4. Ajustar el menú de navegación (si está en horizontal, centrarlo o apilarlo) */
+        nav, header {
+            flex-direction: column;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 5px 0;
+            display: inline-block;
+        }
+
+        /* 5. Si tienes contenedores de productos, hacer que ocupen el 100% del ancho */
+        .contenedor, .section {
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
     </style>
 </head>
 <body>
