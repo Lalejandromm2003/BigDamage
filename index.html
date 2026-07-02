@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG DAMAGE | Streetwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === FUENTES PERSONALIZADAS === */
+        @font-face {
+            font-family: 'Bemdayni Regular';
+            src: url('bemdayni-regular.woff2.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* === VARIABLES & RESET === */
+        :root {
+            --bg-color: #000000;
+            --text-color: #F0F0F0;
+            --accent-color: #ff2a00;
+            --border-color: #222222;
+            --font-headings: 'Bemdayni Regular', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-headings);
+            text-transform: uppercase;
+        }
+
+        /* === HEADER === */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+        }
+
+        .header-logo-text {
+            font-family: var(--font-headings);
+            font-size: 2.5rem; 
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* === INICIO (HERO) === */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('fondoDIA.PNG') center/cover;
+            background-attachment: fixed;
+            padding: 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            color: var(--accent-color);
+            font-family: var(--font-headings);
+            font-weight: normal;
+            letter-spacing: 4px;
+            line-height: 0.8; 
+            margin-bottom: 0;
+            z-index: 2; 
+        }
+
+        .logo-img-central {
+            max-height: 750px;
+            max-width: 90vw;
+            width: auto;
+            margin: -120px 0 -40px 0; 
+            transition: transform 0.4s ease;
+            mix-blend-mode: lighten; 
+            z-index: 1;
+        }
+
+        .logo-img-central:hover {
+            transform: scale(1.03);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            font-family: var(--font-body);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            z-index: 2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 50px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-headings);
+            font-weight: normal;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-color);
+            z-index: 2;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        /* === CATÁLOGO === */
+        .catalogo {
+            padding: 80px 5%;
+            background-color: #050505;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 50px;
+            border-left: 6px solid var(--accent-color);
+            padding-left: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background-color: #0a0a0a;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 380px;
+            background-color: #111;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-family: var(--font-body);
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-family: var(--font-headings);
+        }
+
+        .product-price {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+        }
+
+        /* === CONTACTO === */
+        .contacto {
+            padding: 100px 5%;
+            background-color: #000000;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contacto h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .contacto p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #aaaaaa;
+            font-family: var(--font-body);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-ig {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: transparent;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: 2px solid var(--text-color);
+        }
+
+        .btn-ig:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: #050505;
+        }
+
+        .footer-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 15px;
+            mix-blend-mode: lighten;
+        }
+
+        .footer-text {
+            color: #555;
+            font-size: 1rem;
+            font-family: var(--font-body);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo-text">BIG DAMAGE</div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a> 
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>BIG DAMAGE</h1>
+        <img src="logoBDiron.png" alt="BIG DAMAGE Logo Chrome" class="logo-img-central">
+        <p>STREETWEAR EVOLUTION. DROP 01 LIVE.</p>
+        <a href="#catalogo" class="btn">VER CATÁLOGO</a>
+    </section>
+
+    <section id="catalogo" class="catalogo">
+        <h2 class="section-title">Catálogo</h2>
+        <div class="grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 1]</div>
+                <h3 class="product-name">Item 1</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 2]</div>
+                <h3 class="product-name">Item 2</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 3]</div>
+                <h3 class="product-name">Item 3</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 4]</div>
+                <h3 class="product-name">Item 4</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 5]</div>
+                <h3 class="product-name">Item 5</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+            
+            <!-- Item 6 -->
+            <div class="product-card">
+                <div class="product-image">[FOTO ITEM 6]</div>
+                <h3 class="product-name">Item 6</h3>
+                <p class="product-price">COP $0</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <h2>ÚNETE AL CULTO</h2>
+        <p>Síguenos en Instagram para enterarte de futuros drops, preventas y eventos exclusivos de la marca.</p>
+        <a href="https://www.instagram.com/big_damage.r?igsh=NXMwNTR6bTYzYzk2" target="_blank" class="btn-ig">
+            @big_damage.r
+        </a>
+    </section>
+
+    <footer>
+        <img src="logoBDiron.png" alt="BIG DAMAGE Logo Footer" class="footer-logo">
+        <p class="footer-text">© 2026 Big Damage. Todos los derechos reservados. No rules, just damage.</p>
+    </footer>
+
+</body>
+</html>
