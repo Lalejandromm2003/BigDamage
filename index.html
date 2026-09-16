@@ -249,6 +249,44 @@
             color: var(--bg-color);
         }
 
+        /* Estilos del Formulario */
+        .contacto-form {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #0a0a0a;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(255, 42, 0, 0.3);
+        }
+
+        .form-btn {
+            width: 100%;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .ig-text {
+            margin-top: 20px;
+            margin-bottom: 15px !important;
+        }
+        
         /* === FOOTER === */
         footer {
             text-align: center;
@@ -383,7 +421,16 @@
 
     <section id="contacto" class="contacto">
         <h2>ÚNETE AL CULTO</h2>
-        <p>Síguenos en Instagram para enterarte de futuros drops, preventas y eventos exclusivos de la marca.</p>
+        <p>Regístrate para tener acceso anticipado a nuestros futuros drops, preventas y eventos exclusivos.</p>
+        
+        <!-- Formulario configurado para Webhook -->
+        <form action="TU_URL_DE_WEBHOOK_AQUI" method="POST" class="contacto-form">
+            <input type="text" name="nombre" placeholder="TU NOMBRE" required class="form-input">
+            <input type="email" name="correo" placeholder="TU CORREO" required class="form-input">
+            <button type="submit" class="btn form-btn">NOTIFÍCAME</button>
+        </form>
+
+        <p class="ig-text">O síguenos en Instagram:</p>
         <a href="https://www.instagram.com/big_damage.r?igsh=NXMwNTR6bTYzYzk2" target="_blank" class="btn-ig">
             @big_damage.r
         </a>
