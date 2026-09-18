@@ -368,6 +368,151 @@
             font-size: 1rem;
         }
 
+/* === CHATBOT GLASSMORPHISM === */
+        .chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(255, 42, 0, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            background-color: #d12300;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 42, 0, 0.3);
+            border-radius: 10px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none; /* Oculto para clics */
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: -5px 5px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .chat-container.activo {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all; /* Activo para clics */
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 42, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .chat-close:hover { color: var(--accent-color); }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        /* Scrollbar estético para el chat */
+        .chat-messages::-webkit-scrollbar { width: 4px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 5px; }
+
+        .msg {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            line-height: 1.4;
+        }
+
+        .bot-msg {
+            background-color: rgba(34, 34, 34, 0.8);
+            align-self: flex-start;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .user-msg {
+            background-color: rgba(255, 42, 0, 0.15);
+            align-self: flex-end;
+            border-right: 2px solid var(--accent-color);
+            text-align: right;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid rgba(255, 42, 0, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            background: none;
+            border: none;
+            padding: 15px;
+            color: var(--text-color);
+            outline: none;
+            font-family: var(--font-body);
+        }
+
+        #chat-submit {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: var(--font-headings);
+            letter-spacing: 1px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #chat-submit:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
         /* === OPTIMIZACIÓN MÓVIL === */
         @media (max-width: 768px) {
             body { font-size: 14px; }
@@ -377,6 +522,7 @@
             .hero h1 { font-size: 3.5rem; }
             .logo-img-central { margin: -60px 0 -20px 0; max-height: 500px; }
             .menu-lateral { width: 100%; }
+            .chat-container { width: calc(100% - 40px); right: 20px; left: 20px; bottom: 100px; }
         }
     </style>
 </head>
@@ -464,6 +610,23 @@
         </a>
     </section>
 
+    <!-- === CHATBOT BIG DAMAGE === -->
+    <button id="chat-toggle" class="chat-toggle">💬</button>
+    
+    <div id="chat-container" class="chat-container">
+        <div class="chat-header">
+            <h3>SOPORTE B.D.</h3>
+            <button id="chat-close" class="chat-close">✕</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="msg bot-msg">Conexión establecida. Habla.</div>
+        </div>
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Escribe tu duda..." required autocomplete="off">
+            <button type="submit" id="chat-submit">ENVIAR</button>
+        </form>
+    </div>
+
     <footer>
         <img src="logoBDiron.png" alt="BIG DAMAGE Logo Footer" class="footer-logo">
         <p class="footer-text">© 2026 Big Damage. Todos los derechos reservados. No rules, just damage.</p>
@@ -506,6 +669,70 @@
                 btn.style.cursor = 'pointer';
             });
         });
+
+// === LÓGICA DEL CHATBOT DE IA ===
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatContainer = document.getElementById('chat-container');
+        const chatClose = document.getElementById('chat-close');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // ¡Pega tu URL de Producción de n8n del CHAT aquí dentro de las comillas!
+        const URL_WEBHOOK_CHAT = 'https://alejandromm.app.n8n.cloud/webhook/chat-big-damage';
+
+        // Abrir y cerrar el panel
+        chatToggle.addEventListener('click', () => chatContainer.classList.add('activo'));
+        chatClose.addEventListener('click', () => chatContainer.classList.remove('activo'));
+
+        // Enviar mensaje
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const mensajeTexto = chatInput.value.trim();
+            if (!mensajeTexto) return;
+
+            // 1. Mostrar el mensaje del usuario en pantalla
+            agregarMensaje(mensajeTexto, 'user-msg');
+            chatInput.value = '';
+            
+            // 2. Mostrar indicador de espera
+            const escribiendoId = agregarMensaje('Procesando señal...', 'bot-msg');
+
+            try {
+                // 3. Enviar a n8n por debajo de la mesa
+                const response = await fetch(URL_WEBHOOK_CHAT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mensaje: mensajeTexto })
+                });
+
+                const data = await response.json();
+                
+                // 4. Borrar el indicador de espera y mostrar la respuesta de Gemini
+                document.getElementById(escribiendoId).remove();
+                
+                // Extraemos la respuesta que configuraste en tu nodo Edit Fields (Set) de n8n
+                const respuestaBot = data.respuesta || "Error en el sistema. Repite.";
+                agregarMensaje(respuestaBot, 'bot-msg');
+
+            } catch (error) {
+                // Si falla la conexión con n8n
+                document.getElementById(escribiendoId).remove();
+                agregarMensaje('Se cortó la transmisión. El servidor está caído.', 'bot-msg');
+            }
+        });
+
+        // Función auxiliar para pintar los mensajes en el HTML
+        function agregarMensaje(texto, clase) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${clase}`;
+            msgDiv.textContent = texto;
+            msgDiv.id = 'msg-' + Date.now();
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll hacia abajo
+            return msgDiv.id;
+        }
+
     </script>
 </body>
 </html>
