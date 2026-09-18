@@ -80,6 +80,82 @@
             box-shadow: 0 0 12px rgba(255, 42, 0, 0.5); 
         }
 
+/* === MENÚ LATERAL (GLASSMORPHISM) === */
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-lateral {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Mantiene el menú oculto fuera de la pantalla */
+            width: 320px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.65); /* Fondo oscuro semitransparente */
+            backdrop-filter: blur(15px); /* Efecto nublado estético */
+            -webkit-backdrop-filter: blur(15px); /* Soporte para Safari */
+            border-left: 1px solid rgba(255, 42, 0, 0.3); /* Borde sutil rojo */
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .menu-lateral.activo {
+            right: 0; /* Desliza el menú hacia adentro */
+        }
+
+        .menu-cerrar {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .menu-cerrar:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg); /* Pequeña animación al pasar el cursor */
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .link-lateral {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-headings);
+            font-size: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .link-lateral:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(255, 42, 0, 0.7);
+        }
+
         /* === INICIO (HERO) === */
         .hero {
             min-height: 90vh;
